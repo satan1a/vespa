@@ -570,6 +570,11 @@ source %{_rhmaven35_enable} || true
 source %{_rhgit227_enable} || true
 %endif
 
+# Print go env and fail.
+go env
+VERSION=%{version} make -C client/go install-all
+exit 1
+
 %if 0%{?_java_home:1}
 export JAVA_HOME=%{?_java_home}
 %else
@@ -595,8 +600,6 @@ mvn --batch-mode -e -N io.takari:maven:wrapper -Dmaven=3.6.3
        .
 
 make %{_smp_mflags}
-go env
-VERSION=%{version} make -C client/go install-all
 %endif
 
 %install
