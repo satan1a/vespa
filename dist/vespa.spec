@@ -572,7 +572,7 @@ source %{_rhgit227_enable} || true
 
 # Print go env and fail.
 go env
-VERSION=%{version} make -C client/go install-all
+VERSION=%{version} CI=true make -C client/go install-all
 exit 1
 
 %if 0%{?_java_home:1}
