@@ -201,8 +201,8 @@ FileStorStripeMetrics::FileStorStripeMetrics(const std::string& name, const std:
 
 FileStorStripeMetrics::~FileStorStripeMetrics() = default;
 
-FileStorDiskMetrics::FileStorDiskMetrics(const std::string& name, const std::string& description, MetricSet* owner)
-    : MetricSet(name, {{"partofsum"}}, description, owner),
+FileStorMetrics::FileStorMetrics()
+    : MetricSet("filestor", {{"filestor"}}, ""),
       sumThreads("allthreads", {{"sum"}}, "", this),
       sumStripes("allstripes", {{"sum"}}, "", this),
       averageQueueWaitingTime("averagequeuewait", {}, "Average time an operation spends in input queue.", this),
@@ -212,18 +212,22 @@ FileStorDiskMetrics::FileStorDiskMetrics(const std::string& name, const std::str
       throttle_waiting_threads("throttle_waiting_threads", {}, "Number of threads waiting to acquire a throttle token", this),
       throttle_active_tokens("throttle_active_tokens", {}, "Current number of active throttle tokens", this),
       waitingForLockHitRate("waitingforlockrate", {},
-              "Amount of times a filestor thread has needed to wait for "
-              "lock to take next message in queue.", this),
-      active_operations(this)
+                            "Amount of times a filestor thread has needed to wait for "
+                            "lock to take next message in queue.", this),
+      active_operations(this),
+      directoryEvents("directoryevents", {}, "Number of directory events received.", this),
+      partitionEvents("partitionevents", {}, "Number of partition events received.", this),
+      diskEvents("diskevents", {}, "Number of disk events received.", this),
+      bucket_db_init_latency("bucket_db_init_latency", {}, "Time taken (in ms) to initialize bucket databases with "
+                                                           "information from the persistence provider", this)
 {
     pendingMerges.unsetOnZeroValue();
     waitingForLockHitRate.unsetOnZeroValue();
 }
 
-FileStorDiskMetrics::~FileStorDiskMetrics() = default;
+FileStorMetrics::~FileStorMetrics() = default;
 
-void
-FileStorDiskMetrics::initDiskMetrics(uint32_t numStripes, uint32_t threadsPerDisk)
+void FileStorMetrics::initDiskMetrics(uint32_t numStripes, uint32_t threadsPerDisk)
 {
     threads.clear();
     threads.resize(threadsPerDisk);
@@ -247,28 +251,6 @@ FileStorDiskMetrics::initDiskMetrics(uint32_t numStripes, uint32_t threadsPerDis
         registerMetric(*stripes[i]);
         sumStripes.addMetricToSum(*stripes[i]);
     }
-}
-
-FileStorMetrics::FileStorMetrics()
-    : MetricSet("filestor", {{"filestor"}}, ""),
-      sum("alldisks", {{"sum"}}, "", this),
-      directoryEvents("directoryevents", {}, "Number of directory events received.", this),
-      partitionEvents("partitionevents", {}, "Number of partition events received.", this),
-      diskEvents("diskevents", {}, "Number of disk events received.", this),
-      bucket_db_init_latency("bucket_db_init_latency", {}, "Time taken (in ms) to initialize bucket databases with "
-                                                           "information from the persistence provider", this)
-{ }
-
-FileStorMetrics::~FileStorMetrics() = default;
-
-void FileStorMetrics::initDiskMetrics(uint32_t numStripes, uint32_t threadsPerDisk)
-{
-    assert( ! disk);
-    // Currently FileStorHandlerImpl expects metrics to exist for
-    // disks that are not in use too.
-    disk = std::make_shared<FileStorDiskMetrics>( "disk_0", "Disk 0", this);
-    sum.addMetricToSum(*disk);
-    disk->initDiskMetrics(numStripes, threadsPerDisk);
 }
 
 }
