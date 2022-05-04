@@ -7,7 +7,6 @@ namespace storage {
 
 using metrics::MetricSet;
 
-// TODO Vespa 8 all metrics with .sum in the name should have that removed.
 FileStorThreadMetrics::Op::Op(const std::string& id, const std::string& name, MetricSet* owner)
     : MetricSet(id, {}, name + " load in filestor thread", owner),
       _name(name),
@@ -108,7 +107,7 @@ FileStorThreadMetrics::OpWithNotFound::clone(std::vector<Metric::UP>& ownerList,
 }
 
 FileStorThreadMetrics::Update::Update(MetricSet* owner)
-    : OpWithTestAndSetFailed("update.sum", "Update", owner),
+    : OpWithTestAndSetFailed("update", "Update", owner),
       latencyRead("latency_read", {}, "Latency of the source read in the request.", this)
 { }
 
@@ -127,7 +126,7 @@ FileStorThreadMetrics::Update::clone(std::vector<Metric::UP>& ownerList,
 }
 
 FileStorThreadMetrics::Visitor::Visitor(MetricSet* owner)
-    : Op("visit.sum", "Visit", owner),
+    : Op("visit", "Visit", owner),
       documentsPerIterate("docs", {}, "Number of entries read per iterate call", this)
 { }
 
@@ -149,10 +148,10 @@ FileStorThreadMetrics::FileStorThreadMetrics(const std::string& name, const std:
     : MetricSet(name, {{"filestor"},{"partofsum"}}, desc),
       operations("operations", {}, "Number of operations processed.", this),
       failedOperations("failedoperations", {}, "Number of operations throwing exceptions.", this),
-      put("put.sum", "Put", this),
-      get("get.sum", "Get", this),
-      remove("remove.sum", "Remove", this),
-      removeLocation("remove_location.sum", "Remove location", this),
+      put("put", "Put", this),
+      get("get", "Get", this),
+      remove("remove", "Remove", this),
+      removeLocation("remove_location", "Remove location", this),
       statBucket("stat_bucket", "Stat bucket", this),
       update(this),
       revert("revert", "Revert", this),
@@ -206,7 +205,7 @@ FileStorDiskMetrics::FileStorDiskMetrics(const std::string& name, const std::str
     : MetricSet(name, {{"partofsum"}}, description, owner),
       sumThreads("allthreads", {{"sum"}}, "", this),
       sumStripes("allstripes", {{"sum"}}, "", this),
-      averageQueueWaitingTime("averagequeuewait.sum", {}, "Average time an operation spends in input queue.", this),
+      averageQueueWaitingTime("averagequeuewait", {}, "Average time an operation spends in input queue.", this),
       queueSize("queuesize", {}, "Size of input message queue.", this),
       pendingMerges("pendingmerge", {}, "Number of buckets currently being merged.", this),
       throttle_window_size("throttle_window_size", {}, "Current size of async operation throttler window size", this),
