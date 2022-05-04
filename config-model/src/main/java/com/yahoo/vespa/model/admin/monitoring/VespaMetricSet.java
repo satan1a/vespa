@@ -649,39 +649,31 @@ public class VespaMetricSet {
         // TODO: disregarded when considering metric names. Consider cleaning up for Vespa 9.
         metrics.add(new Metric("vds.datastored.alldisks.docs.average"));
         metrics.add(new Metric("vds.datastored.alldisks.bytes.average"));
-        metrics.add(new Metric("vds.visitor.allthreads.averagevisitorlifetime.sum.max"));
-        metrics.add(new Metric("vds.visitor.allthreads.averagevisitorlifetime.sum.sum"));
-        metrics.add(new Metric("vds.visitor.allthreads.averagevisitorlifetime.sum.count"));
-        metrics.add(new Metric("vds.visitor.allthreads.averagevisitorlifetime.sum.average")); // TODO: Remove in Vespa 8
-        metrics.add(new Metric("vds.visitor.allthreads.averagequeuewait.sum.max"));
-        metrics.add(new Metric("vds.visitor.allthreads.averagequeuewait.sum.sum"));
-        metrics.add(new Metric("vds.visitor.allthreads.averagequeuewait.sum.count"));
-        metrics.add(new Metric("vds.visitor.allthreads.averagequeuewait.sum.average")); // TODO: Remove in Vespa 8
-        metrics.add(new Metric("vds.visitor.allthreads.queuesize.count.max"));
-        metrics.add(new Metric("vds.visitor.allthreads.queuesize.count.sum"));
-        metrics.add(new Metric("vds.visitor.allthreads.queuesize.count.count"));
-        metrics.add(new Metric("vds.visitor.allthreads.queuesize.count.average")); // TODO: Remove in Vespa 8
-        metrics.add(new Metric("vds.visitor.allthreads.completed.sum.average")); // TODO: Remove in Vespa 8
-        metrics.add(new Metric("vds.visitor.allthreads.completed.sum.rate"));
-        metrics.add(new Metric("vds.visitor.allthreads.created.sum.rate"));
-        metrics.add(new Metric("vds.visitor.allthreads.failed.sum.rate"));
-        metrics.add(new Metric("vds.visitor.allthreads.averagemessagesendtime.sum.max"));
-        metrics.add(new Metric("vds.visitor.allthreads.averagemessagesendtime.sum.sum"));
-        metrics.add(new Metric("vds.visitor.allthreads.averagemessagesendtime.sum.count"));
-        metrics.add(new Metric("vds.visitor.allthreads.averagemessagesendtime.sum.average")); // TODO: Remove in Vespa 8
-        metrics.add(new Metric("vds.visitor.allthreads.averageprocessingtime.sum.max"));
-        metrics.add(new Metric("vds.visitor.allthreads.averageprocessingtime.sum.sum"));
-        metrics.add(new Metric("vds.visitor.allthreads.averageprocessingtime.sum.count"));
-        metrics.add(new Metric("vds.visitor.allthreads.averageprocessingtime.sum.average")); // TODO: Remove in Vespa 8
+        metrics.add(new Metric("vds.visitor.allthreads.averagevisitorlifetime.max"));
+        metrics.add(new Metric("vds.visitor.allthreads.averagevisitorlifetime.sum"));
+        metrics.add(new Metric("vds.visitor.allthreads.averagevisitorlifetime.count"));
+        metrics.add(new Metric("vds.visitor.allthreads.averagequeuewait.max"));
+        metrics.add(new Metric("vds.visitor.allthreads.averagequeuewait.sum"));
+        metrics.add(new Metric("vds.visitor.allthreads.averagequeuewait.count"));
+        metrics.add(new Metric("vds.visitor.allthreads.queuesize.max"));
+        metrics.add(new Metric("vds.visitor.allthreads.queuesize.sum"));
+        metrics.add(new Metric("vds.visitor.allthreads.queuesize.count"));
+        metrics.add(new Metric("vds.visitor.allthreads.completed.rate"));
+        metrics.add(new Metric("vds.visitor.allthreads.created.rate"));
+        metrics.add(new Metric("vds.visitor.allthreads.failed.rate"));
+        metrics.add(new Metric("vds.visitor.allthreads.averagemessagesendtime.max"));
+        metrics.add(new Metric("vds.visitor.allthreads.averagemessagesendtime.sum"));
+        metrics.add(new Metric("vds.visitor.allthreads.averagemessagesendtime.count"));
+        metrics.add(new Metric("vds.visitor.allthreads.averageprocessingtime.max"));
+        metrics.add(new Metric("vds.visitor.allthreads.averageprocessingtime.sum"));
+        metrics.add(new Metric("vds.visitor.allthreads.averageprocessingtime.count"));
 
         metrics.add(new Metric("vds.filestor.alldisks.queuesize.max"));
         metrics.add(new Metric("vds.filestor.alldisks.queuesize.sum"));
         metrics.add(new Metric("vds.filestor.alldisks.queuesize.count"));
-        metrics.add(new Metric("vds.filestor.alldisks.queuesize.average")); // TODO: Remove in Vespa 8
-        metrics.add(new Metric("vds.filestor.alldisks.averagequeuewait.sum.max"));
-        metrics.add(new Metric("vds.filestor.alldisks.averagequeuewait.sum.sum"));
-        metrics.add(new Metric("vds.filestor.alldisks.averagequeuewait.sum.count"));
-        metrics.add(new Metric("vds.filestor.alldisks.averagequeuewait.sum.average")); // TODO: Remove in Vespa 8
+        metrics.add(new Metric("vds.filestor.alldisks.averagequeuewait.max"));
+        metrics.add(new Metric("vds.filestor.alldisks.averagequeuewait.sum"));
+        metrics.add(new Metric("vds.filestor.alldisks.averagequeuewait.count"));
         metrics.add(new Metric("vds.filestor.alldisks.active_operations.size.max"));
         metrics.add(new Metric("vds.filestor.alldisks.active_operations.size.sum"));
         metrics.add(new Metric("vds.filestor.alldisks.active_operations.size.count"));
@@ -716,60 +708,53 @@ public class VespaMetricSet {
         metrics.add(new Metric("vds.filestor.alldisks.allstripes.throttled_persistence_thread_polls.rate"));
         metrics.add(new Metric("vds.filestor.alldisks.allstripes.timeouts_waiting_for_throttle_token.rate"));
         
-        metrics.add(new Metric("vds.filestor.alldisks.allthreads.put.sum.count.rate"));
-        metrics.add(new Metric("vds.filestor.alldisks.allthreads.put.sum.failed.rate"));
-        metrics.add(new Metric("vds.filestor.alldisks.allthreads.put.sum.test_and_set_failed.rate"));
-        metrics.add(new Metric("vds.filestor.alldisks.allthreads.put.sum.latency.max"));
-        metrics.add(new Metric("vds.filestor.alldisks.allthreads.put.sum.latency.sum"));
-        metrics.add(new Metric("vds.filestor.alldisks.allthreads.put.sum.latency.count"));
-        metrics.add(new Metric("vds.filestor.alldisks.allthreads.put.sum.latency.average")); // TODO: Remove in Vespa 8
-        metrics.add(new Metric("vds.filestor.alldisks.allthreads.put.sum.request_size.max"));
-        metrics.add(new Metric("vds.filestor.alldisks.allthreads.put.sum.request_size.sum"));
-        metrics.add(new Metric("vds.filestor.alldisks.allthreads.put.sum.request_size.count"));
-        metrics.add(new Metric("vds.filestor.alldisks.allthreads.remove.sum.count.rate"));
-        metrics.add(new Metric("vds.filestor.alldisks.allthreads.remove.sum.failed.rate"));
-        metrics.add(new Metric("vds.filestor.alldisks.allthreads.remove.sum.test_and_set_failed.rate"));
-        metrics.add(new Metric("vds.filestor.alldisks.allthreads.remove.sum.latency.max"));
-        metrics.add(new Metric("vds.filestor.alldisks.allthreads.remove.sum.latency.sum"));
-        metrics.add(new Metric("vds.filestor.alldisks.allthreads.remove.sum.latency.count"));
-        metrics.add(new Metric("vds.filestor.alldisks.allthreads.remove.sum.latency.average")); // TODO: Remove in Vespa 8
-        metrics.add(new Metric("vds.filestor.alldisks.allthreads.remove.sum.request_size.max"));
-        metrics.add(new Metric("vds.filestor.alldisks.allthreads.remove.sum.request_size.sum"));
-        metrics.add(new Metric("vds.filestor.alldisks.allthreads.remove.sum.request_size.count"));
-        metrics.add(new Metric("vds.filestor.alldisks.allthreads.get.sum.count.rate"));
-        metrics.add(new Metric("vds.filestor.alldisks.allthreads.get.sum.failed.rate"));
-        metrics.add(new Metric("vds.filestor.alldisks.allthreads.get.sum.latency.max"));
-        metrics.add(new Metric("vds.filestor.alldisks.allthreads.get.sum.latency.sum"));
-        metrics.add(new Metric("vds.filestor.alldisks.allthreads.get.sum.latency.count"));
-        metrics.add(new Metric("vds.filestor.alldisks.allthreads.get.sum.latency.average")); // TODO: Remove in Vespa 8
-        metrics.add(new Metric("vds.filestor.alldisks.allthreads.get.sum.request_size.max"));
-        metrics.add(new Metric("vds.filestor.alldisks.allthreads.get.sum.request_size.sum"));
-        metrics.add(new Metric("vds.filestor.alldisks.allthreads.get.sum.request_size.count"));
-        metrics.add(new Metric("vds.filestor.alldisks.allthreads.update.sum.count.rate"));
-        metrics.add(new Metric("vds.filestor.alldisks.allthreads.update.sum.failed.rate"));
-        metrics.add(new Metric("vds.filestor.alldisks.allthreads.update.sum.test_and_set_failed.rate"));
-        metrics.add(new Metric("vds.filestor.alldisks.allthreads.update.sum.latency.max"));
-        metrics.add(new Metric("vds.filestor.alldisks.allthreads.update.sum.latency.sum"));
-        metrics.add(new Metric("vds.filestor.alldisks.allthreads.update.sum.latency.count"));
-        metrics.add(new Metric("vds.filestor.alldisks.allthreads.update.sum.latency.average")); // TODO: Remove in Vespa 8
-        metrics.add(new Metric("vds.filestor.alldisks.allthreads.update.sum.request_size.max"));
-        metrics.add(new Metric("vds.filestor.alldisks.allthreads.update.sum.request_size.sum"));
-        metrics.add(new Metric("vds.filestor.alldisks.allthreads.update.sum.request_size.count"));
+        metrics.add(new Metric("vds.filestor.alldisks.allthreads.put.count.rate"));
+        metrics.add(new Metric("vds.filestor.alldisks.allthreads.put.failed.rate"));
+        metrics.add(new Metric("vds.filestor.alldisks.allthreads.put.test_and_set_failed.rate"));
+        metrics.add(new Metric("vds.filestor.alldisks.allthreads.put.latency.max"));
+        metrics.add(new Metric("vds.filestor.alldisks.allthreads.put.latency.sum"));
+        metrics.add(new Metric("vds.filestor.alldisks.allthreads.put.latency.count"));
+        metrics.add(new Metric("vds.filestor.alldisks.allthreads.put.request_size.max"));
+        metrics.add(new Metric("vds.filestor.alldisks.allthreads.put.request_size.sum"));
+        metrics.add(new Metric("vds.filestor.alldisks.allthreads.put.request_size.count"));
+        metrics.add(new Metric("vds.filestor.alldisks.allthreads.remove.count.rate"));
+        metrics.add(new Metric("vds.filestor.alldisks.allthreads.remove.failed.rate"));
+        metrics.add(new Metric("vds.filestor.alldisks.allthreads.remove.test_and_set_failed.rate"));
+        metrics.add(new Metric("vds.filestor.alldisks.allthreads.remove.latency.max"));
+        metrics.add(new Metric("vds.filestor.alldisks.allthreads.remove.latency.sum"));
+        metrics.add(new Metric("vds.filestor.alldisks.allthreads.remove.latency.count"));
+        metrics.add(new Metric("vds.filestor.alldisks.allthreads.remove.request_size.max"));
+        metrics.add(new Metric("vds.filestor.alldisks.allthreads.remove.request_size.sum"));
+        metrics.add(new Metric("vds.filestor.alldisks.allthreads.remove.request_size.count"));
+        metrics.add(new Metric("vds.filestor.alldisks.allthreads.get.count.rate"));
+        metrics.add(new Metric("vds.filestor.alldisks.allthreads.get.failed.rate"));
+        metrics.add(new Metric("vds.filestor.alldisks.allthreads.get.latency.max"));
+        metrics.add(new Metric("vds.filestor.alldisks.allthreads.get.latency.sum"));
+        metrics.add(new Metric("vds.filestor.alldisks.allthreads.get.latency.count"));
+        metrics.add(new Metric("vds.filestor.alldisks.allthreads.get.request_size.max"));
+        metrics.add(new Metric("vds.filestor.alldisks.allthreads.get.request_size.sum"));
+        metrics.add(new Metric("vds.filestor.alldisks.allthreads.get.request_size.count"));
+        metrics.add(new Metric("vds.filestor.alldisks.allthreads.update.count.rate"));
+        metrics.add(new Metric("vds.filestor.alldisks.allthreads.update.failed.rate"));
+        metrics.add(new Metric("vds.filestor.alldisks.allthreads.update.test_and_set_failed.rate"));
+        metrics.add(new Metric("vds.filestor.alldisks.allthreads.update.latency.max"));
+        metrics.add(new Metric("vds.filestor.alldisks.allthreads.update.latency.sum"));
+        metrics.add(new Metric("vds.filestor.alldisks.allthreads.update.latency.count"));
+        metrics.add(new Metric("vds.filestor.alldisks.allthreads.update.request_size.max"));
+        metrics.add(new Metric("vds.filestor.alldisks.allthreads.update.request_size.sum"));
+        metrics.add(new Metric("vds.filestor.alldisks.allthreads.update.request_size.count"));
         metrics.add(new Metric("vds.filestor.alldisks.allthreads.createiterator.latency.max"));
         metrics.add(new Metric("vds.filestor.alldisks.allthreads.createiterator.latency.sum"));
         metrics.add(new Metric("vds.filestor.alldisks.allthreads.createiterator.latency.count"));
-        metrics.add(new Metric("vds.filestor.alldisks.allthreads.createiterator.latency.average")); // TODO: Remove in Vespa 8
         metrics.add(new Metric("vds.filestor.alldisks.allthreads.createiterator.count.rate"));
-        metrics.add(new Metric("vds.filestor.alldisks.allthreads.visit.sum.count.rate"));
-        metrics.add(new Metric("vds.filestor.alldisks.allthreads.visit.sum.latency.max"));
-        metrics.add(new Metric("vds.filestor.alldisks.allthreads.visit.sum.latency.sum"));
-        metrics.add(new Metric("vds.filestor.alldisks.allthreads.visit.sum.latency.count"));
-        metrics.add(new Metric("vds.filestor.alldisks.allthreads.visit.sum.latency.average")); // TODO: Remove in Vespa 8
-        metrics.add(new Metric("vds.filestor.alldisks.allthreads.remove_location.sum.count.rate"));
-        metrics.add(new Metric("vds.filestor.alldisks.allthreads.remove_location.sum.latency.max"));
-        metrics.add(new Metric("vds.filestor.alldisks.allthreads.remove_location.sum.latency.sum"));
-        metrics.add(new Metric("vds.filestor.alldisks.allthreads.remove_location.sum.latency.count"));
-        metrics.add(new Metric("vds.filestor.alldisks.allthreads.remove_location.sum.latency.average")); // TODO: Remove in Vespa 8
+        metrics.add(new Metric("vds.filestor.alldisks.allthreads.visit.count.rate"));
+        metrics.add(new Metric("vds.filestor.alldisks.allthreads.visit.latency.max"));
+        metrics.add(new Metric("vds.filestor.alldisks.allthreads.visit.latency.sum"));
+        metrics.add(new Metric("vds.filestor.alldisks.allthreads.visit.latency.count"));
+        metrics.add(new Metric("vds.filestor.alldisks.allthreads.remove_location.count.rate"));
+        metrics.add(new Metric("vds.filestor.alldisks.allthreads.remove_location.latency.max"));
+        metrics.add(new Metric("vds.filestor.alldisks.allthreads.remove_location.latency.sum"));
+        metrics.add(new Metric("vds.filestor.alldisks.allthreads.remove_location.latency.count"));
         metrics.add(new Metric("vds.filestor.alldisks.allthreads.splitbuckets.count.rate"));
         metrics.add(new Metric("vds.filestor.alldisks.allthreads.joinbuckets.count.rate"));
         metrics.add(new Metric("vds.filestor.alldisks.allthreads.deletebuckets.count.rate"));
@@ -777,7 +762,6 @@ public class VespaMetricSet {
         metrics.add(new Metric("vds.filestor.alldisks.allthreads.deletebuckets.latency.max"));
         metrics.add(new Metric("vds.filestor.alldisks.allthreads.deletebuckets.latency.sum"));
         metrics.add(new Metric("vds.filestor.alldisks.allthreads.deletebuckets.latency.count"));
-        metrics.add(new Metric("vds.filestor.alldisks.allthreads.deletebuckets.latency.average")); // TODO: Remove in Vespa 8
         metrics.add(new Metric("vds.filestor.alldisks.allthreads.setbucketstates.count.rate"));
         return metrics;
     }
